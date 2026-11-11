@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PawFood - Settings</title>
+    <link rel="stylesheet" href="../../css/dashboard/settings.css">
+    <link rel="stylesheet" href="../../css/theme.css">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="app-layout">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                <div class="brand-icon-box">
+                    <i class="fa-solid fa-paw"></i>
+                </div>
+                <div class="brand-text">
+                    <h1>PawFood</h1>
+                    <span>Sales & Demand</span>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <div class="nav-section-title">MAIN</div>
+                <a href="overview.html" class="nav-item">
+                    <i class="fa-solid fa-chart-pie"></i> Overview
+                </a>
+                <a href="demand-forecast.html" class="nav-item">
+                    <i class="fa-solid fa-chart-line"></i> Demand Forecast
+                </a>
+                <a href="products.html" class="nav-item">
+                    <i class="fa-solid fa-box-archive"></i> Products
+                </a>
+                <a href="reports.html" class="nav-item">
+                    <i class="fa-solid fa-file-lines"></i> Reports
+                </a>
+
+                <div class="nav-section-title system-title">SYSTEM</div>
+                <a href="settings.html" class="nav-item active">
+                    <i class="fa-solid fa-gear"></i> Settings
+                </a>
+            </nav>
+
+            <!-- User Profile & Logout Footer -->
+            <div class="sidebar-footer">
+                <div class="user-account-box">
+                    <div class="user-profile-row">
+                        <img id="sidebarProfileImage" src="/assets/dog-index.png" alt="Profile"
+                            class="user-avatar-img">
+
+                        <div class="user-info">
+                            <strong id="sidebarUserName">Loading...</strong>
+                            <span id="sidebarUserEmail">Loading...</span>
+                        </div>
+                    </div>
+                    <a href="/logout" class="logout-link-row logout-btn">
+                        <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
+                    </a>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Top Header Bar -->
+            <header class="top-header">
+                <div class="header-breadcrumb-pills">
+                    <span class="badge-pill gray">Academic Term Project</span>
+                    <span class="breadcrumb-sub">Demand Modeling v1.0</span>
+                </div>
+            </header>
+
+            <!-- Scrollable Dashboard Body -->
+            <div class="dashboard-scroll-container">
+                <!-- Page Title -->
+                <div class="page-title-row">
+                    <div>
+                        <h2>Settings</h2>
+                        <p>Manage your profile, appearance preferences, and account status.</p>
+                    </div>
+                </div>
+
+                <!-- Section 1: Profile Information -->
+                <div class="settings-card">
+                    <div class="settings-card-header">
+                        <div class="settings-card-icon-box"><i class="fa-regular fa-user"></i></div>
+                        <div>
+                            <h3>Profile Information</h3>
+                            <p>Update your personal details and account presence.</p>
+                        </div>
+                    </div>
+
+                    <div class="profile-banner-row">
+                        <img id="profileImage" src="/assets/dog-index.png" alt="Profile"
+                            class="profile-large-avatar">
+                        <div class="profile-banner-info">
+                            <div class="profile-name-badge-row">
+                                <strong id="profileDisplayName"></strong>
+                            </div>
+
+                            <span class="profile-email-lbl" id="profileDisplayEmail"></span>
+
+                            <input type="file" id="profileImageInput" accept="image/*" hidden>
+
+                            <button type="button" id="changePhotoBtn" class="outline-btn change-photo-btn">
+                                <i class="fa-regular fa-image"></i> Change Photo
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="settings-form-grid">
+                        <div class="input-group">
+                            <label>First Name</label>
+                            <input type="text" id="firstName" value="">
+                        </div>
+
+                        <div class="input-group">
+                            <label>Last Name</label>
+                            <input type="text" id="lastName" value="">
+                        </div>
+                        <div class="input-group">
+                            <label>Username</label>
+                            <input type="text" id="username" value="">
+                        </div>
+                        <div class="input-group">
+                            <label>Email Address</label>
+                            <input type="email" id="email" value="">
+                        </div>
+                    </div>
+                    <div class="profile-actions">
+                        <button type="button" id="saveProfileBtn" class="primary-green-btn">
+                            <i class="fa-solid fa-check"></i>
+                            Save Profile
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Section 2: Appearance -->
+                <div class="settings-card">
+                    <div class="settings-card-header">
+                        <div class="settings-card-icon-box"><i class="fa-solid fa-circle-half-stroke"></i></div>
+                        <div>
+                            <h3>Appearance</h3>
+                            <p>Select whether you prefer light or dark interface theme.</p>
+                        </div>
+                    </div>
+
+                    <div class="appearance-grid">
+                        <div class="theme-card active" data-theme-choice="light" role="button" tabindex="0">
+                            <div class="theme-card-top">
+                                <div class="theme-icon-circle"><i class="fa-regular fa-sun"></i></div>
+                                <div class="radio-check active"><i class="fa-solid fa-check"></i></div>
+                            </div>
+                            <strong>Light Mode</strong>
+                            <p>Fresh clean background with high contrast text</p>
+                        </div>
+
+                        <div class="theme-card" data-theme-choice="dark" role="button" tabindex="0">
+                            <div class="theme-card-top">
+                                <div class="theme-icon-circle"><i class="fa-regular fa-moon"></i></div>
+                                <div class="radio-check"></div>
+                            </div>
+                            <strong>Dark Mode</strong>
+                            <p>Dimmed palette designed to reduce eye strain</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 3: Delete Account (Danger Zone) -->
+                <div class="settings-card danger-zone-card">
+                    <div class="settings-card-header">
+                        <div class="settings-card-icon-box red-bg"><i class="fa-regular fa-trash-can"></i></div>
+                        <div>
+                            <h3 class="red-title">Delete Account</h3>
+                            <p>Danger Zone & permanent removal</p>
+                        </div>
+                    </div>
+
+                    <div class="danger-zone-body">
+                        <p>Permanently remove your personal account, saved preferences, and access. This action is
+                            irreversible and cannot be undone.</p>
+                        <button id="deleteAccountBtn" class="danger-btn"><i class="fa-regular fa-trash-can"></i> Delete
+                            Account</button>
+                    </div>
+                </div>
+
+                <!-- Section 4: Change Password (opens a modal) -->
+                <div class="settings-card">
+                    <div class="settings-card-header">
+                        <div class="settings-card-icon-box"><i class="fa-solid fa-lock"></i></div>
+                        <div>
+                            <h3>Change Password</h3>
+                            <p>Update the password you use to log in.</p>
+                        </div>
+                    </div>
+
+                    <div class="password-card-body">
+                        <p>For your security, you will be asked to enter your current password before choosing a
+                            new one.</p>
+                        <button type="button" id="openPasswordModalBtn" class="primary-green-btn">
+                            <i class="fa-solid fa-key"></i>
+                            Change Password
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Change Password Modal -->
+    <div class="pw-modal-overlay" id="changePasswordModal" aria-hidden="true">
+        <div class="pw-modal" role="dialog" aria-modal="true" aria-labelledby="changePasswordTitle">
+            <div class="pw-modal-header">
+                <div>
+                    <h3 id="changePasswordTitle">Change Password</h3>
+                    <p>Use at least 8 characters. Choose a password you don't use elsewhere.</p>
+                </div>
+                <button type="button" class="pw-modal-close" id="closePasswordModalBtn" aria-label="Close">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <form id="changePasswordForm" novalidate>
+                <div class="pw-modal-fields">
+                    <div class="input-group">
+                        <label for="currentPassword">Current Password</label>
+                        <input type="password" id="currentPassword" autocomplete="current-password">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="newPassword">New Password</label>
+                        <input type="password" id="newPassword" autocomplete="new-password">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="confirmPassword">Confirm New Password</label>
+                        <input type="password" id="confirmPassword" autocomplete="new-password">
+                    </div>
+
+                    <label class="pw-show-toggle">
+                        <input type="checkbox" id="showPasswords">
+                        <span>Show passwords</span>
+                    </label>
+
+                    <p class="pw-modal-error" id="passwordError" role="alert" hidden></p>
+                </div>
+
+                <div class="pw-modal-actions">
+                    <button type="button" class="outline-btn" id="cancelPasswordBtn">Cancel</button>
+                    <button type="submit" class="primary-green-btn" id="submitPasswordBtn">
+                        <i class="fa-solid fa-key"></i>
+                        Update Password
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../../js/themes/themes-switcher.js"></script>
+    <script src="../../js/dashboard/settings.js"></script>
+    <script src="../../js/dashboard/auth-check.js"></script>
+    <script src="../../js/dashboard/logout.js"></script>
+    <script src="../../js/dashboard/dashboard-user.js"></script>
+</body>
+
+</html>

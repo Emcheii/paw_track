@@ -1,0 +1,212 @@
+:root {
+    --primary-green: #204e33;
+    --primary-hover: #173824;
+    --accent-orange: #d97736;
+    --bg-canvas: #f4f6f9;
+    --card-bg: #ffffff;
+    --text-dark: #0f172a;
+    --text-muted: #64748b;
+    --border-light: #e2e8f0;
+    --input-bg: #fafafa;
+    --sidebar-bg: #ffffff;
+    --header-bg: #ffffff;
+    --table-header-bg: #fafafa;
+    --button-text: #ffffff;
+}
+
+/* Dark Mode Theme Variables */
+[data-theme="dark"] {
+    --primary-green: #2ea043;
+    --primary-hover: #238636;
+    --accent-orange: #f0883e;
+    --bg-canvas: #0d1117;
+    --card-bg: #161b22;
+    --text-dark: #f0f6fc;
+    --text-muted: #8b949e;
+    --border-light: #30363d;
+    --input-bg: #0d1117;
+    --sidebar-bg: #161b22;
+    --header-bg: #161b22;
+    --table-header-bg: #21262d;
+    --button-text: #ffffff;
+}
+
+/* Base Universal Reset & Element Styling */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+html, body {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background-color: var(--bg-canvas) !important;
+    color: var(--text-dark) !important;
+}
+
+/* Global Typography & Font Color Overrides */
+h1, h2, h3, h4, h5, h6, strong, b {
+    color: var(--text-dark) !important;
+}
+
+p, span, label, small, li, a:not(.primary-green-btn):not(.nav-item.active) {
+    color: var(--text-muted);
+}
+
+/* Layout Containers & Cards */
+.app-layout, .main-content, .dashboard-scroll-container {
+    background-color: var(--bg-canvas) !important;
+}
+
+.sidebar, 
+.top-header, 
+.section-card, 
+.metric-card, 
+.settings-card, 
+.reporting-window-pill, 
+.autosync-badge, 
+.sprint-badge,
+.filter-toolbar-card {
+    background-color: var(--card-bg) !important;
+    border-color: var(--border-light) !important;
+    color: var(--text-dark) !important;
+}
+
+.sidebar {
+    background-color: var(--sidebar-bg) !important;
+    border-right: 1px solid var(--border-light) !important;
+}
+
+.top-header {
+    background-color: var(--header-bg) !important;
+    border-bottom: 1px solid var(--border-light) !important;
+}
+
+/* Form Inputs, Selects & Search Bars */
+input, select, textarea {
+    background-color: var(--input-bg) !important;
+    border: 1px solid var(--border-light) !important;
+    color: var(--text-dark) !important;
+}
+
+input::placeholder {
+    color: var(--text-muted) !important;
+}
+
+/* Buttons & Icons */
+.primary-green-btn {
+    background-color: var(--primary-green) !important;
+    color: var(--button-text) !important;
+    border: none !important;
+}
+
+.primary-green-btn:hover {
+    background-color: var(--primary-hover) !important;
+}
+
+.outline-btn, .filter-dropdown-btn, .autosync-badge, .sprint-badge, .page-btn {
+    background-color: var(--card-bg) !important;
+    border-color: var(--border-light) !important;
+    color: var(--text-dark) !important;
+}
+
+.outline-btn:hover, .filter-dropdown-btn:hover {
+    background-color: var(--input-bg) !important;
+}
+
+/* Icons styling */
+i, .nav-item i, .metric-icon-box i, .header-search-box i {
+    color: inherit;
+}
+
+.sidebar-nav .nav-item {
+    color: var(--text-muted);
+}
+
+.sidebar-nav .nav-item:hover {
+    background-color: rgba(46, 160, 67, 0.08);
+    color: var(--primary-green);
+}
+
+.sidebar-nav .nav-item.active {
+    background-color: var(--primary-green) !important;
+    color: #ffffff !important;
+}
+
+.sidebar-nav .nav-item.active i {
+    color: #ffffff !important;
+}
+
+/* Tables */
+.data-table th {
+    background-color: var(--table-header-bg) !important;
+    color: var(--text-muted) !important;
+    border-bottom: 1px solid var(--border-light) !important;
+}
+
+.data-table td {
+    border-bottom: 1px solid var(--border-light) !important;
+    color: var(--text-dark) !important;
+}
+
+/* Theme Toggle Cards on Settings Page */
+.theme-card {
+    border: 1px solid var(--border-light) !important;
+    background: var(--card-bg) !important;
+    cursor: pointer;
+}
+
+.theme-card.active {
+    border-color: var(--primary-green) !important;
+    background: rgba(46, 160, 67, 0.08) !important;
+}
+
+
+/* Theme Card Icons & Radios */
+.theme-icon-circle {
+    width: 32px;
+    height: 32px;
+    background: var(--input-bg);
+    border: 1px solid var(--border-light);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-dark);
+    font-size: 0.9rem;
+}
+
+.radio-check {
+    width: 18px;
+    height: 18px;
+    border: 1px solid var(--border-light);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--card-bg);
+}
+
+.radio-check.active {
+    background: var(--primary-green);
+    border-color: var(--primary-green);
+    color: #ffffff;
+    font-size: 0.65rem;
+}
+
+.theme-card {
+    border: 1px solid var(--border-light);
+    background: var(--card-bg);
+    border-radius: 10px;
+    padding: 1.1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.theme-card.active {
+    border-color: var(--primary-green);
+    background: rgba(46, 160, 67, 0.05);
+}

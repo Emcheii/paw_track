@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PawFood - Demand Forecast</title>
+    <link rel="stylesheet" href="../../css/dashboard/demand-forecast.css">
+    <link rel="stylesheet" href="../../css/theme.css">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="app-layout">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                <div class="brand-icon-box">
+                    <i class="fa-solid fa-paw"></i>
+                </div>
+                <div class="brand-text">
+                    <h1>PawFood</h1>
+                    <span>Sales & Demand</span>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <div class="nav-section-title">MAIN</div>
+                <a href="overview.html" class="nav-item">
+                    <i class="fa-solid fa-chart-pie"></i> Overview
+                </a>
+                <a href="demand-forecast.html" class="nav-item active">
+                    <i class="fa-solid fa-chart-line"></i> Demand Forecast
+                </a>
+                <a href="products.html" class="nav-item">
+                    <i class="fa-solid fa-box-archive"></i> Products
+                </a>
+                <a href="reports.html" class="nav-item">
+                    <i class="fa-solid fa-file-lines"></i> Reports
+                </a>
+
+                <div class="nav-section-title system-title">SYSTEM</div>
+                <a href="settings.html" class="nav-item">
+                    <i class="fa-solid fa-gear"></i> Settings
+                </a>
+            </nav>
+
+            <!-- User Profile & Logout Footer -->
+            <div class="sidebar-footer">
+                <div class="user-account-box">
+                    <div class="user-profile-row">
+                        <img id="sidebarProfileImage" src="../../assets/images/default-avatar.png" alt="Profile"
+                            class="user-avatar-img">
+
+                        <div class="user-info">
+                            <strong id="sidebarUserName">Loading...</strong>
+                            <span id="sidebarUserEmail">Loading...</span>
+                        </div>
+                    </div>
+                    <a href="/logout" class="logout-link-row logout-btn">
+                        <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
+                    </a>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Top Header Bar -->
+            <header class="top-header">
+                <div class="header-breadcrumb-pills">
+                    <span class="badge-pill gray">Academic Term Project</span>
+                    <span class="breadcrumb-sub">Demand Modeling v1.0</span>
+                </div>
+            </header>
+
+            <!-- Scrollable Dashboard Body -->
+            <div class="dashboard-scroll-container">
+                <!-- Page Title & Header Notice -->
+                <div class="page-title-row">
+                    <div>
+                        <div class="title-with-badge">
+                            <h2>Demand Forecast</h2>
+                            <span id="modelStatusBadge" class="badge-pill gray">FORECAST READY TO RUN</span>
+                        </div>
+                        <p>Estimate monthly demand by product subcategory using historical sales patterns.</p>
+                    </div>
+                    <div class="notice-banner-top">
+                        <i class="fa-solid fa-circle-exclamation notice-icon"></i>
+                        <span><strong>Notice:</strong> Forecasts are estimates, not guaranteed sales. Actual demand may
+                            vary.</span>
+                    </div>
+                </div>
+
+                <!-- Forecast Parameters -->
+                <div class="section-card">
+                    <div class="section-header-inline">
+                        <h3><i class="fa-solid fa-sliders"></i> Forecast Parameters</h3>
+                        <span id="modelStatusText" class="model-status-ready">
+                            <i class="fa-solid fa-circle"></i> Model: Ready to connect
+                        </span>
+                    </div>
+                    <div class="parameters-grid forecast-parameters-grid">
+
+                        <div class="param-group">
+                            <label for="forecastMonth">Forecast Month</label>
+                            <select id="forecastMonth" class="param-select" required>
+                                <option value="01">January</option>
+                                <option value="02">February</option>
+                                <option value="03">March</option>
+                                <option value="04">April</option>
+                                <option value="05">May</option>
+                                <option value="06">June</option>
+                                <option value="07">July</option>
+                                <option value="08">August</option>
+                                <option value="09">September</option>
+                                <option value="10">October</option>
+                                <option value="11">November</option>
+                                <option value="12">December</option>
+                            </select>
+                        </div>
+
+                        <div class="param-group">
+                            <label for="forecastYear">Forecast Year</label>
+                            <input id="forecastYear" class="param-select" type="number" min="2026" max="2100" step="1"
+                                placeholder="Enter year" required>
+                        </div>
+
+                        <div class="param-group">
+                            <label for="forecastCategory">Major Category Filter</label>
+                            <select id="forecastCategory" class="param-select">
+                                <option value="">All Categories</option>
+                            </select>
+                        </div>
+
+                        <button id="generateForecastBtn" class="primary-green-btn" type="button">
+                            <i class="fa-solid fa-rotate"></i> Generate Forecast
+                        </button>
+                    </div>
+                    <p id="forecastMessage" class="forecast-message" role="status" aria-live="polite">
+                        Choose a month, then select Generate Forecast.
+                    </p>
+                </div>
+
+                <!-- Summary and charts -->
+                <div class="forecast-dual-grid">
+                    <div class="section-card result-card">
+                        <div class="section-header">
+                            <div class="result-card-title-wrap">
+                                <i class="fa-solid fa-chart-pie"></i>
+                                <h3>Forecast Result</h3>
+                            </div>
+                            <span id="resultStatusBadge" class="badge-pill gray">Awaiting forecast</span>
+                        </div>
+                        <div class="forecast-metric-content">
+                            <span class="forecast-metric-lbl">Total Estimated Demand</span>
+                            <div class="forecast-metric-val-row">
+                                <span id="forecastTotal" class="forecast-huge-num">—</span>
+                                <span class="forecast-unit-lbl">units</span>
+                            </div>
+                            <div id="forecastPeriod" class="forecast-period-row">
+                                <i class="fa-regular fa-calendar"></i> Forecast period: —
+                            </div>
+                            <p class="forecast-desc">Sum of the model's predicted monthly demand across the returned
+                                subcategories.</p>
+                            <div class="forecast-prediction-note">
+                                <i class="fa-solid fa-circle-exclamation"></i>
+                                Estimate only. This is not a guarantee of actual sales.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section-card chart-card-flex">
+                        <div class="section-header">
+                            <div>
+                                <h3>Predicted Demand by Subcategory</h3>
+                                <p>Highest projected monthly demand appears first.</p>
+                            </div>
+                        </div>
+                        <div class="forecast-chart-area forecast-chart-area-tall">
+                            <canvas id="demandBarChart" aria-label="Predicted demand by subcategory bar chart"></canvas>
+                            <div id="barChartEmpty" class="chart-empty-state">
+                                <i class="fa-solid fa-chart-column"></i>
+                                <p>No forecast data yet.</p>
+                                <span>Generate a forecast to view predicted demand.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-card">
+                    <div class="section-header">
+                        <div>
+                            <h3>Historical Demand vs. Forecast</h3>
+                            <p id="historyChartSubtitle">Select a forecast month to compare the historical pattern for a
+                                subcategory.</p>
+                        </div>
+                    </div>
+                    <div class="forecast-chart-area forecast-chart-area-tall">
+                        <canvas id="demandHistoryChart"
+                            aria-label="Historical monthly demand and forecast line chart"></canvas>
+                        <div id="historyChartEmpty" class="chart-empty-state">
+                            <i class="fa-solid fa-chart-line"></i>
+                            <p>No historical data yet.</p>
+                            <span>The selected subcategory's historical monthly demand will appear here.</span>
+                        </div>
+                    </div>
+                    <p class="chart-footnote">Historical values come from the API response. The forecast point is a
+                        model estimate and should not be interpreted as guaranteed sales.</p>
+                </div>
+
+                <!-- Forecast ranking table -->
+                <div class="section-card">
+                    <div class="section-header">
+                        <div>
+                            <h3><i class="fa-solid fa-ranking-star"></i> Demand Forecast Ranking</h3>
+                            <p>Subcategories ranked by predicted monthly demand.</p>
+                        </div>
+                        <span id="forecastCountBadge" class="badge-pill gray">0 subcategories</span>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Rank</th>
+                                    <th>Subcategory</th>
+                                    <th>Major Category</th>
+                                    <th>Forecast Month</th>
+                                    <th class="text-right">Predicted Daily Demand</th>
+                                    <th class="text-right">Predicted Monthly Demand</th>
+                                </tr>
+                            </thead>
+                            <tbody id="forecastTableBody">
+                                <tr>
+                                    <td colspan="6" class="empty-table-state">
+                                        <i class="fa-solid fa-box-open"></i>
+                                        <strong>No forecast data available yet.</strong>
+                                        <span>Select a month and generate a forecast.</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- Forecast vs. Inventory Comparison -->
+                <div class="section-card">
+                    <div class="section-header">
+                        <div>
+                            <h3>
+                                <i class="fa-solid fa-boxes-stacked"></i>
+                                Forecast vs. Inventory
+                            </h3>
+                            <p>
+                                Compare predicted demand against the combined stock
+                                of products under each subcategory.
+                            </p>
+                        </div>
+
+                        <span id="inventoryComparisonMonth" class="badge-pill gray">
+                            No comparison yet
+                        </span>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Subcategory</th>
+                                    <th>Major Category</th>
+                                    <th class="text-right">Forecast Demand</th>
+                                    <th class="text-right">Combined Stock</th>
+                                    <th class="text-right">Shortage</th>
+                                    <th class="text-center">Stock Status</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="inventoryComparisonTableBody">
+                                <tr>
+                                    <td colspan="6" class="empty-table-state">
+                                        <i class="fa-solid fa-box-open"></i>
+                                        <strong>No inventory comparison available yet.</strong>
+                                        <span>
+                                            Generate a forecast to compare demand
+                                            with available inventory.
+                                        </span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <p id="inventoryComparisonMessage" class="forecast-message" role="status" aria-live="polite">
+                    </p>
+                </div>
+            </div>
+        </main>
+
+        <script src="../../js/themes/themes-switcher.js"></script>
+        <script src="../../js/dashboard/auth-check.js"></script>
+        <script src="../../js/dashboard/logout.js"></script>
+        <script src="../../js/dashboard/dashboard-user.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="../../js/dashboard/demand-forecast.js"></script>
+    </div>
+</body>
+
+</html>

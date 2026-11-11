@@ -1,0 +1,220 @@
+
+.monitoring-summary {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.monitoring-stat-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    padding: 21px;
+    border: 1px solid var(--border-light);
+    border-radius: 11px;
+    background: var(--card-bg);
+}
+
+.monitoring-stat-card div {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.monitoring-stat-card span {
+    color: var(--text-muted);
+    font-size: 12px;
+}
+
+.monitoring-stat-card strong {
+    color: var(--text-dark);
+    font-size: 26px;
+    font-weight: 700;
+}
+
+.monitoring-stat-card > i {
+    display: grid;
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+    place-items: center;
+    border-radius: 11px;
+    background: var(--input-bg);
+    color: var(--primary-green);
+    font-size: 17px;
+}
+
+.monitoring-panel {
+    overflow: hidden;
+    border: 1px solid var(--border-light);
+    border-radius: 12px;
+    background: var(--card-bg);
+}
+
+.monitoring-panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 20px;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.monitoring-panel-header h3 {
+    color: var(--text-dark);
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.monitoring-panel-header p {
+    margin-top: 5px;
+    color: var(--text-muted);
+    font-size: 11px;
+}
+
+.monitoring-panel-header select {
+    min-width: 170px;
+    height: 38px;
+    padding: 0 11px;
+    border: 1px solid var(--border-light);
+    border-radius: 7px;
+    outline: none;
+    background: var(--input-bg);
+    color: var(--text-dark);
+    font-size: 11px;
+    cursor: pointer;
+}
+
+.monitoring-panel-header select:focus {
+    border-color: var(--primary-green);
+}
+
+.monitoring-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.monitoring-table {
+    width: 100%;
+    border-collapse: collapse;
+    white-space: nowrap;
+}
+
+.monitoring-table th,
+.monitoring-table td {
+    padding: 15px 18px;
+    border-bottom: 1px solid var(--border-light);
+    text-align: left;
+    font-size: 12px;
+}
+
+.monitoring-table th {
+    background: var(--input-bg);
+    color: var(--text-muted);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.monitoring-table td {
+    color: var(--text-dark);
+}
+
+.monitoring-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.monitoring-loading {
+    padding: 35px !important;
+    color: var(--text-muted) !important;
+    text-align: center !important;
+}
+
+.monitoring-activity-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 9px;
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: 600;
+}
+
+.monitoring-activity-status.success {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.monitoring-activity-status.failed {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.monitoring-activity-status.neutral {
+    background: #f1f5f9;
+    color: #475569;
+}
+
+.monitoring-empty-state {
+    padding: 45px 20px;
+    text-align: center;
+}
+
+.monitoring-empty-state[hidden] {
+    display: none;
+}
+
+.monitoring-empty-state i {
+    display: block;
+    margin-bottom: 12px;
+    color: var(--text-muted);
+    font-size: 28px;
+}
+
+.monitoring-empty-state strong,
+.monitoring-empty-state span {
+    display: block;
+}
+
+.monitoring-empty-state strong {
+    color: var(--text-dark);
+    font-size: 14px;
+}
+
+.monitoring-empty-state span {
+    margin-top: 6px;
+    color: var(--text-muted);
+    font-size: 12px;
+}
+
+@media (max-width: 800px) {
+    .monitoring-summary {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .monitoring-stat-card:last-child {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (max-width: 600px) {
+    .monitoring-summary {
+        grid-template-columns: 1fr;
+    }
+
+    .monitoring-stat-card:last-child {
+        grid-column: auto;
+    }
+
+    .monitoring-panel-header {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .monitoring-panel-header select {
+        width: 100%;
+    }
+}

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PawFood - Reports</title>
+    <link rel="stylesheet" href="../../css/dashboard/reports.css">
+    <link rel="stylesheet" href="../../css/theme.css">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="app-layout">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                <div class="brand-icon-box">
+                    <i class="fa-solid fa-paw"></i>
+                </div>
+                <div class="brand-text">
+                    <h1>PawFood</h1>
+                    <span>Sales & Demand</span>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <div class="nav-section-title">MAIN</div>
+                <a href="overview.html" class="nav-item">
+                    <i class="fa-solid fa-chart-pie"></i> Overview
+                </a>
+                <a href="demand-forecast.html" class="nav-item">
+                    <i class="fa-solid fa-chart-line"></i> Demand Forecast
+                </a>
+                <a href="products.html" class="nav-item">
+                    <i class="fa-solid fa-box-archive"></i> Products
+                </a>
+                <a href="reports.html" class="nav-item active">
+                    <i class="fa-solid fa-file-lines"></i> Reports
+                </a>
+
+                <div class="nav-section-title system-title">SYSTEM</div>
+                <a href="settings.html" class="nav-item">
+                    <i class="fa-solid fa-gear"></i> Settings
+                </a>
+            </nav>
+
+            <!-- User Profile & Logout Footer -->
+            <div class="sidebar-footer">
+                <div class="user-account-box">
+                    <div class="user-profile-row">
+                        <img id="sidebarProfileImage" src="../../assets/images/default-avatar.png" alt="Profile"
+                            class="user-avatar-img">
+
+                        <div class="user-info">
+                            <strong id="sidebarUserName">Loading...</strong>
+                            <span id="sidebarUserEmail">Loading...</span>
+                        </div>
+                    </div>
+                    <a href="/logout" class="logout-link-row logout-btn">
+                        <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
+                    </a>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Top Header Bar -->
+            <header class="top-header">
+                <div class="header-breadcrumb-pills">
+                    <span class="badge-pill gray">Academic Term Project</span>
+                    <span class="breadcrumb-sub">Demand Modeling v1.0</span>
+                </div>
+            </header>
+
+            <!-- Scrollable Dashboard Body -->
+            <div class="dashboard-scroll-container">
+                <!-- Page Title & Header Banner -->
+
+                <!-- Page Title & Export -->
+                <div class="page-title-row">
+                    <div>
+                        <h2>Reports</h2>
+                        <p>View the top 5 products based on predicted monthly demand.</p>
+                    </div>
+
+                    <button class="primary-green-btn export-btn">
+                        <i class="fa-solid fa-download"></i> Export Report (CSV/PDF)
+                    </button>
+                </div>
+
+                <!-- 4 Top Report Metrics Grid -->
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-header">
+                            <span class="metric-title">HISTORICAL UNITS SOLD</span>
+                            <div class="metric-icon-box bg-blue"><i class="fa-solid fa-bag-shopping"></i></div>
+                        </div>
+                        <div class="metric-value">-</div>
+                        <div class="metric-subtext">No historical sales data available yet.</div>
+                    </div>
+
+                    <div class="metric-card">
+                        <div class="metric-header">
+                            <span class="metric-title">TOP SELLING CATEGORY</span>
+                            <div class="metric-icon-box bg-yellow"><i class="fa-solid fa-star"></i></div>
+                        </div>
+                        <div class="metric-value">-</div>
+                        <div class="metric-subtext">No historical sales data available yet.</div>
+                    </div>
+
+                    <div class="metric-card">
+                        <div class="metric-header">
+                            <span class="metric-title">STOCKOUT OCCURRENCES</span>
+                            <div class="metric-icon-box bg-red"><i class="fa-solid fa-cart-shopping"></i></div>
+                        </div>
+                        <div class="metric-value">-</div>
+                        <div class="metric-subtext">No historical stock records available yet.</div>
+                    </div>
+
+                    <div class="metric-card">
+                        <div class="metric-header">
+                            <span class="metric-title">INVENTORY TURNOVER RATE</span>
+                            <div class="metric-icon-box bg-purple"><i class="fa-solid fa-arrow-right-arrow-left"></i>
+                            </div>
+                        </div>
+                        <div class="metric-value">-</div>
+                        <div class="metric-subtext">No historical inventory data available yet.</div>
+                    </div>
+                </div>
+
+                <!-- Predicted Monthly Demand Chart Section -->
+                <div class="section-card">
+                    <div class="section-header">
+                        <div>
+                            <h3>Top 5 Predicted Monthly Demand</h3>
+                            <p>Forecasted monthly demand by product subcategory, ranked by predicted demand.</p>
+                        </div>
+                    </div>
+
+                    <div class="chart-mockup-box reports-chart-box">
+                        <canvas id="topProductsChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Side by Side Tables Grid -->
+                <div class="reports-tables-grid">
+                    <!-- Left Table: Product Sales & Volume Performance -->
+                    <div class="section-card table-card-flex">
+                        <div class="section-header">
+                            <div>
+                                <h3>Product Sales & Volume Performance</h3>
+                                <p>Historical product sales information.</p>
+                            </div>
+                            <i class="fa-solid fa-chart-bar header-icon-muted"></i>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>PRODUCT</th>
+                                        <th>CATEGORY</th>
+                                        <th>UNITS SOLD</th>
+                                        <th>SALES PERIOD</th>
+                                        <th>TREND</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td colspan="5" class="empty-table-state">
+                                            No historical sales records available yet.
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Right Table: Historical Stock Information & Reorder Audit -->
+                    <div class="section-card table-card-flex">
+                        <div class="section-header">
+                            <div>
+                                <h3>Historical Stock Information & Reorder Audit</h3>
+                                <p>Historical inventory and stock movement information.</p>
+                            </div>
+                            <i class="fa-solid fa-warehouse header-icon-muted"></i>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>PRODUCT</th>
+                                        <th>INITIAL STOCK</th>
+                                        <th>DISPENSED</th>
+                                        <th>CURRENT STOCK</th>
+                                        <th>STATUS</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td colspan="5" class="empty-table-state">
+                                            No historical stock records available yet.
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Page Footer Information -->
+                <div class="reports-page-footer">
+                    <span>
+                        <i class="fa-regular fa-circle-check"></i>
+                        Historical report data will appear when records are available.
+                    </span>
+                    <span class="footer-sandbox-lbl">PawFood Educational Sandbox</span>
+                </div>
+            </div>
+        </main>
+
+        <script src="../../js/themes/themes-switcher.js"></script>
+        <script src="../../js/dashboard/auth-check.js"></script>
+        <script src="../../js/dashboard/logout.js"></script>
+        <script src="../../js/dashboard/dashboard-user.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="../../js/dashboard/reports.js"></script>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,376 @@
+:root {
+    --primary-green: #204e33;
+    --primary-hover: #173824;
+    --accent-orange: #d97736;
+    --bg-canvas: #f8fafc;
+    --card-bg: #ffffff;
+    --text-dark: #0f172a;
+    --text-muted: #64748b;
+    --border-light: #e2e8f0;
+    --input-bg: #fafafa;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* Enforce non-scrolling full viewport setup */
+html, body {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background-color: var(--bg-canvas);
+}
+
+.page-container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+/* --- Left Hero Section --- */
+.hero-section {
+    flex: 1;
+    position: relative;
+    /* CHANGE 'your-photo.jpg' to the exact filename of your image file */
+    background-image: url('../assets/dog-index.png'); 
+    background-size: cover;
+    background-position: center;
+    background-color: #2b3e32; /* Fallback background color if image is missing */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 2.5rem;
+}
+
+.brand-badge-top {
+    position: absolute;
+    top: 2rem;
+    left: 2.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    z-index: 2;
+}
+
+.brand-icon {
+    width: 34px;
+    height: 34px;
+    background: #ffffff;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-green);
+    font-size: 0.95rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.brand-badge-top span {
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 1.15rem;
+    letter-spacing: -0.3px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+/* Glass Floating Box */
+.hero-floating-card {
+    position: relative;
+    z-index: 2;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 18px;
+    padding: 2rem;
+    box-shadow: 0 20px 35px rgba(0, 0, 0, 0.12);
+    max-width: 480px;
+}
+
+.pill-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+    color: var(--primary-green);
+    background: rgba(32, 78, 51, 0.08);
+    padding: 4px 10px;
+    border-radius: 20px;
+    margin-bottom: 0.85rem;
+}
+
+.hero-floating-card h1 {
+    font-size: 1.7rem;
+    color: var(--text-dark);
+    line-height: 1.2;
+    margin-bottom: 0.6rem;
+    letter-spacing: -0.4px;
+}
+
+.green-text {
+    color: var(--primary-green);
+}
+
+.hero-floating-card p {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    line-height: 1.45;
+    margin-bottom: 1.1rem;
+}
+
+/* --- Right Login Section --- */
+.login-section {
+    flex: 1;
+    background-color: var(--bg-canvas);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.login-card-box {
+    background: var(--card-bg);
+    width: 100%;
+    max-width: 420px;
+    padding: 2.2rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.03);
+    border: 1px solid var(--border-light);
+}
+
+.top-logo-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 0.6rem;
+}
+
+.brand-icon-box {
+    width: 28px;
+    height: 28px;
+    background: var(--primary-green);
+    color: white;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+}
+
+.brand-title-text {
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--text-dark);
+}
+
+.login-card-header h2 {
+    font-size: 1.5rem;
+    color: var(--text-dark);
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+    letter-spacing: -0.4px;
+}
+
+.login-subtitle {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+}
+
+/* Form Styles */
+.input-container {
+    margin-bottom: 1rem;
+}
+
+.input-container label {
+    display: block;
+    font-size: 0.62rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    letter-spacing: 0.4px;
+    margin-bottom: 0.35rem;
+}
+
+.input-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.field-icon {
+    position: absolute;
+    left: 13px;
+    color: #94a3b8;
+    font-size: 0.85rem;
+}
+
+.input-wrap input {
+    width: 100%;
+    padding: 10px 14px 10px 38px;
+    background-color: var(--input-bg);
+    border: 1px solid var(--border-light);
+    border-radius: 9px;
+    font-size: 0.82rem;
+    color: var(--text-dark);
+    transition: all 0.2s;
+}
+
+.input-wrap input:focus {
+    outline: none;
+    border-color: var(--primary-green);
+    background-color: #ffffff;
+    box-shadow: 0 0 0 3px rgba(32, 78, 51, 0.08);
+}
+
+.eye-btn {
+    position: absolute;
+    right: 12px;
+    background: none;
+    border: none;
+    color: #94a3b8;
+    cursor: pointer;
+    font-size: 0.85rem;
+}
+
+.eye-btn:hover {
+    color: var(--text-dark);
+}
+
+.form-extra-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.25rem;
+    font-size: 0.78rem;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--text-muted);
+    cursor: pointer;
+}
+
+.checkbox-label input {
+    accent-color: var(--primary-green);
+    width: 13px;
+    height: 13px;
+    cursor: pointer;
+}
+
+.text-link {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.text-link:hover {
+    color: var(--primary-green);
+    text-decoration: underline;
+}
+
+.primary-btn {
+    width: 100%;
+    padding: 11px;
+    background-color: var(--primary-green);
+    color: #ffffff;
+    border: none;
+    border-radius: 9px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: background-color 0.2s;
+}
+
+.primary-btn:hover {
+    background-color: var(--primary-hover);
+}
+
+.separator {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 1.1rem 0;
+    color: #cbd5e1;
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+}
+
+.separator::before, .separator::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.separator span {
+    padding: 0 10px;
+}
+
+.bottom-signup {
+    text-align: center;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+}
+
+.bottom-signup a {
+    color: var(--primary-green);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.bottom-signup a:hover {
+    text-decoration: underline;
+}
+
+.encryption-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border-light);
+    padding-top: 0.9rem;
+}
+
+.green-dot {
+    width: 5px;
+    height: 5px;
+    background-color: #10b981;
+    border-radius: 50%;
+}
+
+/* Responsive breakpoint fallback for mobile/small viewports */
+@media (max-width: 900px) {
+    html, body {
+        height: auto;
+        overflow: auto;
+    }
+    .page-container {
+        flex-direction: column;
+        height: auto;
+    }
+    .hero-section {
+        min-height: 380px;
+        padding: 1.5rem;
+    }
+    .brand-badge-top {
+        top: 1.5rem;
+        left: 1.5rem;
+    }
+    .hero-floating-card {
+        max-width: 100%;
+    }
+}

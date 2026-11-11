@@ -1,0 +1,230 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PawFood | User Management</title>
+
+    <link rel="stylesheet" href="../../css/theme.css">
+    <link rel="stylesheet" href="../../css/admin/layout.css">
+    <link rel="stylesheet" href="../../css/admin/user-management.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="admin-layout">
+        <aside class="admin-sidebar">
+            <div class="admin-sidebar-brand">
+                <div class="admin-brand-icon">
+                    <i class="fa-solid fa-paw"></i>
+                </div>
+                <div class="admin-brand-text">
+                    <h1>PawFood</h1>
+                    <span>Administration</span>
+                </div>
+            </div>
+
+            <nav class="admin-sidebar-nav">
+                <p class="admin-nav-title">ADMINISTRATION</p>
+
+                <a href="overview.html" class="admin-nav-item" data-admin-nav data-page-title="Admin Overview">
+                    <i class="fa-solid fa-chart-pie"></i>
+                    <span>Admin Overview</span>
+                </a>
+
+                <a href="user-management.html" class="admin-nav-item active" data-admin-nav data-page-title="User Management">
+                    <i class="fa-solid fa-users"></i>
+                    <span>User Management</span>
+                </a>
+
+                <a href="user-monitoring.html" class="admin-nav-item" data-admin-nav data-page-title="User Monitoring">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <span>User Monitoring</span>
+                </a>
+
+                <a href="settings.html" class="admin-nav-item" data-admin-nav data-page-title="Settings">
+                    <i class="fa-solid fa-gear"></i>
+                    <span>Settings</span>
+                </a>
+            </nav>
+
+            <div class="admin-sidebar-footer">
+                <div class="admin-user-profile">
+                    <img
+                        src="../../assets/images/default-avatar.png"
+                        alt="Admin profile"
+                        class="admin-user-avatar"
+                        data-admin-user-avatar
+                    >
+
+                    <div class="admin-user-details">
+                        <strong data-admin-user-name>Loading...</strong>
+                        <span data-admin-user-email>Loading...</span>
+                    </div>
+                </div>
+
+                <a href="/logout" class="admin-logout-link logout-btn">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+
+        <main class="admin-main">
+            <header class="admin-topbar">
+                <span class="admin-topbar-label" data-admin-page-title>User Management</span>
+
+                <button
+                    type="button"
+                    class="admin-sidebar-toggle"
+                    data-admin-sidebar-toggle
+                    aria-label="Toggle navigation"
+                    aria-expanded="false"
+                >
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </header>
+
+            <div class="admin-page-container">
+                <section class="admin-page-heading">
+                    <div>
+                        <h2>User Management</h2>
+                        <p>Create and manage user accounts and their access status.</p>
+                    </div>
+
+                    <button type="button" class="admin-create-user-btn" id="openCreateUserBtn">
+                        <i class="fa-solid fa-user-plus"></i>
+                        Create Account
+                    </button>
+                </section>
+
+                <section class="admin-user-stats">
+                    <article class="admin-user-stat-card">
+                        <span>Total Users</span>
+                        <strong id="totalUsers">0</strong>
+                    </article>
+
+                    <article class="admin-user-stat-card">
+                        <span>Active Users</span>
+                        <strong id="activeUsers">0</strong>
+                    </article>
+
+                    <article class="admin-user-stat-card">
+                        <span>Inactive Users</span>
+                        <strong id="inactiveUsers">0</strong>
+                    </article>
+                </section>
+
+                <section class="admin-user-management-panel">
+                    <div class="admin-user-toolbar">
+                        <div class="admin-user-search">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <input
+                                type="search"
+                                id="userSearch"
+                                placeholder="Search name, username, or email..."
+                                aria-label="Search users"
+                            >
+                        </div>
+
+                        <select id="accountStatusFilter" aria-label="Filter by account status">
+                            <option value="all">All Statuses</option>
+                            <option value="active">Active</option>
+                            <option value="inactive">Inactive</option>
+                        </select>
+                    </div>
+
+                    <div class="admin-user-table-wrapper">
+                        <table class="admin-user-table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Username</th>
+                                    <th>Email</th>
+                                    <th>Date Created</th>
+                                    <th>Account Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="usersTableBody">
+                                <tr>
+                                    <td colspan="6" class="admin-loading">
+                                        Loading user accounts...
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div id="usersEmptyState" class="admin-users-empty" hidden>
+                            <i class="fa-solid fa-users"></i>
+                            <strong>No user accounts found</strong>
+                            <span>Try changing your search or status filter.</span>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <div class="admin-modal-overlay" id="createUserModal" aria-hidden="true">
+        <div class="admin-modal">
+            <div class="admin-modal-header">
+                <div>
+                    <h3>Create User Account</h3>
+                    <p>Provide the account details for the new user.</p>
+                </div>
+
+                <button type="button" class="admin-modal-close" id="closeCreateUserBtn" aria-label="Close">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <form id="createUserForm">
+                <div class="admin-form-grid">
+                    <div class="admin-form-group">
+                        <label for="newFirstName">First Name</label>
+                        <input type="text" id="newFirstName" maxlength="100" required>
+                    </div>
+
+                    <div class="admin-form-group">
+                        <label for="newLastName">Last Name</label>
+                        <input type="text" id="newLastName" maxlength="100" required>
+                    </div>
+
+                    <div class="admin-form-group">
+                        <label for="newUsername">Username</label>
+                        <input type="text" id="newUsername" maxlength="100" required>
+                    </div>
+
+                    <div class="admin-form-group">
+                        <label for="newEmail">Email Address</label>
+                        <input type="email" id="newEmail" maxlength="255" required>
+                    </div>
+
+                    <div class="admin-form-group admin-form-full">
+                        <label for="newPassword">Temporary Password</label>
+                        <input type="password" id="newPassword" minlength="8" required>
+                        <small>Password must contain at least 8 characters.</small>
+                    </div>
+                </div>
+
+                <div class="admin-modal-actions">
+                    <button type="button" class="admin-cancel-btn" id="cancelCreateUserBtn">
+                        Cancel
+                    </button>
+
+                    <button type="submit" class="admin-submit-btn" id="createUserSubmitBtn">
+                        <i class="fa-solid fa-user-plus"></i>
+                        Create Account
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../../js/admin/layout.js"></script>
+    <script src="../../js/admin/user-management.js"></script>
+</body>
+</html>

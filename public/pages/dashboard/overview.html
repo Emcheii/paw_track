@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PawFood - Overview</title>
+    <link rel="stylesheet" href="../../css/dashboard/overview.css">
+    <link rel="stylesheet" href="../../css/theme.css">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <div class="app-layout">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                <div class="brand-icon-box">
+                    <i class="fa-solid fa-paw"></i>
+                </div>
+                <div class="brand-text">
+                    <h1>PawFood</h1>
+                    <span>Sales & Demand</span>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <div class="nav-section-title">MAIN</div>
+                <a href="overview.html" class="nav-item active">
+                    <i class="fa-solid fa-chart-pie"></i> Overview
+                </a>
+                <a href="demand-forecast.html" class="nav-item">
+                    <i class="fa-solid fa-chart-line"></i> Demand Forecast
+                </a>
+                <a href="products.html" class="nav-item">
+                    <i class="fa-solid fa-box-archive"></i> Products
+                </a>
+                <a href="reports.html" class="nav-item">
+                    <i class="fa-solid fa-file-lines"></i> Reports
+                </a>
+
+                <div class="nav-section-title system-title">SYSTEM</div>
+                <a href="settings.html" class="nav-item">
+                    <i class="fa-solid fa-gear"></i> Settings
+                </a>
+            </nav>
+
+            <!-- User Profile & Logout Footer -->
+            <div class="sidebar-footer">
+                <div class="user-account-box">
+                    <div class="user-profile-row">
+                        <img id="sidebarProfileImage" src="../../assets/images/default-avatar.png" alt="Profile"
+                            class="user-avatar-img">
+
+                        <div class="user-info">
+                            <strong id="sidebarUserName">Loading...</strong>
+                            <span id="sidebarUserEmail">Loading...</span>
+                        </div>
+                    </div>
+                    <a href="/logout" class="logout-link-row logout-btn">
+                        <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
+                    </a>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Top Header Bar -->
+            <header class="top-header">
+                <div class="header-breadcrumb-pills">
+                    <span class="badge-pill gray">Academic Term Project</span>
+                    <span class="breadcrumb-sub">Demand Modeling v1.0</span>
+                </div>
+            </header>
+
+            <!-- Scrollable Dashboard Body -->
+            <div class="dashboard-scroll-container">
+                <!-- Page Title & Sprint Header -->
+                <div class="page-title-row">
+                    <div>
+                        <h2>Overview</h2>
+                        <p>Here's a quick summary of your dog food business.</p>
+                    </div>
+                    <div class="sprint-action-group">
+                        <div class="sprint-badge">
+                            <i class="fa-regular fa-calendar"></i>
+                            <span id="currentDate"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4 Top Overview Metric Cards -->
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-header">
+                            <span class="metric-title">TOTAL PRODUCTS</span>
+                            <div class="metric-icon-box bg-blue"><i class="fa-solid fa-box"></i></div>
+                        </div>
+                        <div id="totalProducts" class="metric-value">0</div>
+                        <div class="metric-subtext"><strong>Active</strong> Active products catalogued</div>
+                    </div>
+
+                    <div class="metric-card">
+                        <div class="metric-header">
+                            <span class="metric-title">CURRENT STOCK</span>
+                            <div class="metric-icon-box bg-blue"><i class="fa-solid fa-warehouse"></i></div>
+                        </div>
+                        <div id="currentStock" class="metric-value">0</div>
+                        <div class="metric-subtext">Total units available across hubs</div>
+                    </div>
+
+                    <div class="metric-card">
+                        <div class="metric-header">
+                            <span class="metric-title">UNITS SOLD</span>
+                            <div class="metric-icon-box bg-blue"><i class="fa-solid fa-bag-shopping"></i></div>
+                        </div>
+                        <div id="unitsSold" class="metric-value">-</div>
+                        <div id="unitsSoldSubtitle" class="metric-subtext">
+                            Sales data not available
+                        </div>
+                    </div>
+
+                    <div class="metric-card">
+                        <div class="metric-header">
+                            <span class="metric-title">FORECAST DEMAND</span>
+                            <div class="metric-icon-box bg-blue"><i class="fa-solid fa-chart-line"></i></div>
+                        </div>
+                        <div id="forecastDemand" class="metric-value">-</div>
+                        <div id="forecastDemandSubtitle" class="metric-subtext">
+                            No saved forecast available
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Demand Overview Chart Section -->
+                <div class="section-card">
+                    <div class="section-header">
+                        <div>
+                            <h3>Demand Overview</h3>
+                            <p>Historical demand data will appear here once sales data is available.</p>
+                        </div>
+                    </div>
+
+                    <div class="chart-mockup-box overview-chart-box">
+                        <div id="demandChartEmpty" class="chart-empty-state">
+                            <i class="fa-solid fa-chart-line"></i>
+                            <p>No forecast data available yet.</p>
+                            <span>Generate a forecast on the Demand Forecast page first.</span>
+                        </div>
+
+                        <div id="demandChartContainer"
+                            style="display: none; position: relative; height: 360px; width: 100%; overflow: hidden;">
+                            <canvas id="demandOverviewChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Low Stock Products Table Section -->
+                <div class="section-card">
+                    <div class="section-header">
+                        <div>
+                            <h3><i class="fa-solid fa-triangle-exclamation alert-icon"></i> Low Stock Products</h3>
+                            <p>Items requiring immediate purchase order or inventory replenishment.</p>
+                        </div>
+                        <a href="products.html" class="outline-btn">View Products <i
+                                class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>PRODUCT</th>
+                                    <th>CATEGORY</th>
+                                    <th>CURRENT STOCK</th>
+                                    <th class="text-right">STATUS</th>
+                                </tr>
+                            </thead>
+                            <tbody id="lowStockTableBody">
+                                <tr>
+                                    <td>
+                                        <div class="product-item-cell">
+                                            <div class="product-thumb-box">🐶</div>
+                                            <div>
+                                                <strong>Puppy Growth Kibble</strong>
+                                                <span>SKU: PW-DRY-012</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><span class="category-pill">Dry Food</span></td>
+                                    <td><strong>8 units</strong></td>
+                                    <td class="text-right"><span class="status-badge yellow">● Low Stock</span></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="product-item-cell">
+                                            <div class="product-thumb-box">🐕</div>
+                                            <div>
+                                                <strong>Adult Dog Food Classic</strong>
+                                                <span>SKU: PW-DRY-004</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><span class="category-pill">Dry Food</span></td>
+                                    <td><strong>5 units</strong></td>
+                                    <td class="text-right"><span class="status-badge yellow">● Low Stock</span></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="product-item-cell">
+                                            <div class="product-thumb-box">🥫</div>
+                                            <div>
+                                                <strong>Organic Chicken Stew</strong>
+                                                <span>SKU: PW-WET-038</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><span class="category-pill">Wet Food</span></td>
+                                    <td><strong>4 units</strong></td>
+                                    <td class="text-right"><span class="status-badge red">● Critical Low</span></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="product-item-cell">
+                                            <div class="product-thumb-box">🦴</div>
+                                            <div>
+                                                <strong>Dental Chew Sticks</strong>
+                                                <span>SKU: PW-TRT-028</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><span class="category-pill">Treats</span></td>
+                                    <td><strong>9 units</strong></td>
+                                    <td class="text-right"><span class="status-badge yellow">● Low Stock</span></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="product-item-cell">
+                                            <div class="product-thumb-box">🏺</div>
+                                            <div>
+                                                <strong>Salmon Oil Glaze</strong>
+                                                <span>SKU: PW-SUP-015</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><span class="category-pill">Supplements</span></td>
+                                    <td><strong>0 units</strong></td>
+                                    <td class="text-right"><span class="status-badge dark-red">● Out of Stock</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Reorder Draft Footer Bar -->
+                    <div class="reorder-draft-banner">
+                        <strong>Reorder planning unavailable</strong>
+                        <span>Reorder recommendations will appear after demand forecasting is available.</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <script src="../../js/themes/themes-switcher.js"></script>
+        <script src="../../js/dashboard/auth-check.js"></script>
+        <script src="../../js/dashboard/logout.js"></script>
+        <script src="../../js/dashboard/overview.js"></script>
+        <script src="../../js/dashboard/dashboard-user.js"></script>
+    </div>
+</body>
+
+</html>

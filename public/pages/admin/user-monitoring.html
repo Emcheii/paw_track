@@ -1,0 +1,171 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PawFood | User Monitoring</title>
+
+    <link rel="stylesheet" href="../../css/theme.css">
+    <link rel="stylesheet" href="../../css/admin/layout.css">
+    <link rel="stylesheet" href="../../css/admin/user-monitoring.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="admin-layout">
+        <aside class="admin-sidebar">
+            <div class="admin-sidebar-brand">
+                <div class="admin-brand-icon">
+                    <i class="fa-solid fa-paw"></i>
+                </div>
+                <div class="admin-brand-text">
+                    <h1>PawFood</h1>
+                    <span>Administration</span>
+                </div>
+            </div>
+
+            <nav class="admin-sidebar-nav">
+                <p class="admin-nav-title">ADMINISTRATION</p>
+
+                <a href="overview.html" class="admin-nav-item" data-admin-nav data-page-title="Admin Overview">
+                    <i class="fa-solid fa-chart-pie"></i>
+                    <span>Admin Overview</span>
+                </a>
+
+                <a href="user-management.html" class="admin-nav-item" data-admin-nav data-page-title="User Management">
+                    <i class="fa-solid fa-users"></i>
+                    <span>User Management</span>
+                </a>
+
+                <a href="user-monitoring.html" class="admin-nav-item active" data-admin-nav data-page-title="User Monitoring">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <span>User Monitoring</span>
+                </a>
+
+                <a href="settings.html" class="admin-nav-item" data-admin-nav data-page-title="Settings">
+                    <i class="fa-solid fa-gear"></i>
+                    <span>Settings</span>
+                </a>
+            </nav>
+
+            <div class="admin-sidebar-footer">
+                <div class="admin-user-profile">
+                    <img
+                        src="../../assets/images/default-avatar.png"
+                        alt="Admin profile"
+                        class="admin-user-avatar"
+                        data-admin-user-avatar
+                    >
+
+                    <div class="admin-user-details">
+                        <strong data-admin-user-name>Loading...</strong>
+                        <span data-admin-user-email>Loading...</span>
+                    </div>
+                </div>
+
+                <a href="/logout" class="admin-logout-link logout-btn">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+
+        <main class="admin-main">
+            <header class="admin-topbar">
+                <span class="admin-topbar-label" data-admin-page-title>User Monitoring</span>
+
+                <button
+                    type="button"
+                    class="admin-sidebar-toggle"
+                    data-admin-sidebar-toggle
+                    aria-label="Toggle navigation"
+                    aria-expanded="false"
+                >
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </header>
+
+            <div class="admin-page-container">
+                <section class="admin-page-heading">
+                    <div>
+                        <h2>User Monitoring</h2>
+                        <p>Review account activity and access records.</p>
+                    </div>
+                </section>
+
+                <section class="monitoring-summary">
+                    <article class="monitoring-stat-card">
+                        <div>
+                            <span>Successful Logins</span>
+                            <strong id="successfulLogins">--</strong>
+                        </div>
+                        <i class="fa-solid fa-right-to-bracket"></i>
+                    </article>
+
+                    <article class="monitoring-stat-card">
+                        <div>
+                            <span>Failed Login Attempts</span>
+                            <strong id="failedLogins">--</strong>
+                        </div>
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                    </article>
+
+                    <article class="monitoring-stat-card">
+                        <div>
+                            <span>Account Changes</span>
+                            <strong id="accountChanges">--</strong>
+                        </div>
+                        <i class="fa-solid fa-user-gear"></i>
+                    </article>
+                </section>
+
+                <section class="monitoring-panel">
+                    <div class="monitoring-panel-header">
+                        <div>
+                            <h3>Recent Account Activity</h3>
+                            <p>Recorded user access and account events.</p>
+                        </div>
+
+                        <select id="activityTypeFilter" aria-label="Filter activity type">
+                            <option value="all">All Activities</option>
+                            <option value="login">Successful Login</option>
+                            <option value="failed_login">Failed Login</option>
+                            <option value="account_change">Account Change</option>
+                        </select>
+                    </div>
+
+                    <div class="monitoring-table-wrapper">
+                        <table class="monitoring-table">
+                            <thead>
+                                <tr>
+                                    <th>User</th>
+                                    <th>Activity</th>
+                                    <th>Date and Time</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="activityTableBody">
+                                <tr>
+                                    <td colspan="4" class="monitoring-loading">
+                                        Loading activity records...
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div id="activityEmptyState" class="monitoring-empty-state" hidden>
+                            <i class="fa-solid fa-clock-rotate-left"></i>
+                            <strong>No activity records found</strong>
+                            <span>Activity records will appear here when available.</span>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <script src="../../js/admin/layout.js"></script>
+    <script src="../../js/admin/user-monitoring.js"></script>
+</body>
+</html>

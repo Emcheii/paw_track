@@ -1,0 +1,17 @@
+# Dependencies
+node_modules/
+
+# Environment variables
+.env
+.env.*
+
+# Python environment
+machine_learning/.venv/
+__pycache__/
+*.pyc
+
+# System files
+.DS_Store
+
+# Private sales dataset
+machine_learning/data/

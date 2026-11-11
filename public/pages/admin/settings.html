@@ -1,0 +1,259 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PawFood | Admin Settings</title>
+
+    <link rel="stylesheet" href="../../css/theme.css">
+    <link rel="stylesheet" href="../../css/admin/layout.css">
+    <link rel="stylesheet" href="../../css/admin/settings.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="admin-layout">
+
+        <aside class="admin-sidebar">
+
+            <div class="admin-sidebar-brand">
+                <div class="admin-brand-icon">
+                    <i class="fa-solid fa-paw"></i>
+                </div>
+
+                <div class="admin-brand-text">
+                    <h1>PawFood</h1>
+                    <span>Administration</span>
+                </div>
+            </div>
+
+            <nav class="admin-sidebar-nav">
+                <p class="admin-nav-title">ADMINISTRATION</p>
+
+                <a href="overview.html" class="admin-nav-item"
+                   data-admin-nav data-page-title="Admin Overview">
+                    <i class="fa-solid fa-chart-pie"></i>
+                    <span>Admin Overview</span>
+                </a>
+
+                <a href="user-management.html" class="admin-nav-item"
+                   data-admin-nav data-page-title="User Management">
+                    <i class="fa-solid fa-users"></i>
+                    <span>User Management</span>
+                </a>
+
+                <a href="user-monitoring.html" class="admin-nav-item"
+                   data-admin-nav data-page-title="User Monitoring">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <span>User Monitoring</span>
+                </a>
+
+                <a href="settings.html" class="admin-nav-item active"
+                   data-admin-nav data-page-title="Settings">
+                    <i class="fa-solid fa-gear"></i>
+                    <span>Settings</span>
+                </a>
+            </nav>
+
+            <div class="admin-sidebar-footer">
+                <div class="admin-user-profile">
+                    <img
+                        src="../../assets/images/default-avatar.png"
+                        alt="Admin profile"
+                        class="admin-user-avatar"
+                        data-admin-user-avatar
+                    >
+
+                    <div class="admin-user-details">
+                        <strong data-admin-user-name>Loading...</strong>
+                        <span data-admin-user-email>Loading...</span>
+                    </div>
+                </div>
+
+                <a href="/logout" class="admin-logout-link logout-btn">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+
+        </aside>
+
+        <main class="admin-main">
+
+            <header class="admin-topbar">
+                <span class="admin-topbar-label" data-admin-page-title>
+                    Settings
+                </span>
+
+                <button
+                    type="button"
+                    class="admin-sidebar-toggle"
+                    data-admin-sidebar-toggle
+                    aria-label="Toggle navigation"
+                    aria-expanded="false"
+                >
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </header>
+
+            <div class="admin-page-container">
+
+                <section class="admin-page-heading">
+                    <div>
+                        <h2>Settings</h2>
+                        <p>Manage your personal profile and interface preferences.</p>
+                    </div>
+                </section>
+
+                <!-- Profile Information -->
+                <section class="admin-settings-card">
+
+                    <div class="admin-settings-card-header">
+                        <div class="admin-settings-icon">
+                            <i class="fa-regular fa-user"></i>
+                        </div>
+
+                        <div>
+                            <h3>Profile Information</h3>
+                            <p>Update your personal details and account information.</p>
+                        </div>
+                    </div>
+
+                    <div class="admin-profile-banner">
+                        <div class="admin-profile-avatar">
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+
+                        <div class="admin-profile-banner-info">
+                            <strong id="profileDisplayName">Loading...</strong>
+                            <span id="profileDisplayEmail">Loading...</span>
+
+                            <span class="admin-role-label">
+                                <i class="fa-solid fa-shield-halved"></i>
+                                Administrator
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="admin-settings-form-grid">
+
+                        <div class="admin-input-group">
+                            <label for="firstName">First Name</label>
+                            <input
+                                type="text"
+                                id="firstName"
+                                autocomplete="given-name"
+                            >
+                        </div>
+
+                        <div class="admin-input-group">
+                            <label for="lastName">Last Name</label>
+                            <input
+                                type="text"
+                                id="lastName"
+                                autocomplete="family-name"
+                            >
+                        </div>
+
+                        <div class="admin-input-group">
+                            <label for="username">Username</label>
+                            <input
+                                type="text"
+                                id="username"
+                                autocomplete="username"
+                            >
+                        </div>
+
+                        <div class="admin-input-group">
+                            <label for="email">Email Address</label>
+                            <input
+                                type="email"
+                                id="email"
+                                autocomplete="email"
+                            >
+                        </div>
+
+                    </div>
+
+                    <div class="admin-settings-actions">
+                        <button
+                            type="button"
+                            id="saveProfileBtn"
+                            class="admin-primary-btn"
+                        >
+                            <i class="fa-solid fa-check"></i>
+                            Save Profile
+                        </button>
+                    </div>
+
+                </section>
+
+                <!-- Appearance -->
+                <section class="admin-settings-card">
+
+                    <div class="admin-settings-card-header">
+                        <div class="admin-settings-icon">
+                            <i class="fa-solid fa-circle-half-stroke"></i>
+                        </div>
+
+                        <div>
+                            <h3>Appearance</h3>
+                            <p>Choose your preferred interface theme.</p>
+                        </div>
+                    </div>
+
+                    <div class="admin-appearance-grid">
+
+                        <button
+                            type="button"
+                            class="admin-theme-card active"
+                            data-theme-option="light"
+                            aria-pressed="true"
+                        >
+                            <div class="admin-theme-card-top">
+                                <div class="admin-theme-icon">
+                                    <i class="fa-regular fa-sun"></i>
+                                </div>
+
+                                <span class="admin-theme-check">
+                                    <i class="fa-solid fa-check"></i>
+                                </span>
+                            </div>
+
+                            <strong>Light Mode</strong>
+                            <p>Clean and bright interface.</p>
+                        </button>
+
+                        <button
+                            type="button"
+                            class="admin-theme-card"
+                            data-theme-option="dark"
+                            aria-pressed="false"
+                        >
+                            <div class="admin-theme-card-top">
+                                <div class="admin-theme-icon">
+                                    <i class="fa-regular fa-moon"></i>
+                                </div>
+
+                                <span class="admin-theme-check"></span>
+                            </div>
+
+                            <strong>Dark Mode</strong>
+                            <p>Dark interface with reduced brightness.</p>
+                        </button>
+
+                    </div>
+
+                </section>
+
+            </div>
+        </main>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../../js/admin/layout.js"></script>
+    <script src="../../js/admin/settings.js"></script>
+</body>
+</html>

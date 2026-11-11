@@ -1,0 +1,186 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PawFood | Admin Overview</title>
+
+    <link rel="stylesheet" href="../../css/theme.css">
+    <link rel="stylesheet" href="../../css/admin/layout.css">
+    <link rel="stylesheet" href="../../css/admin/overview.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="admin-layout">
+        <aside class="admin-sidebar">
+            <div class="admin-sidebar-brand">
+                <div class="admin-brand-icon">
+                    <i class="fa-solid fa-paw"></i>
+                </div>
+                <div class="admin-brand-text">
+                    <h1>PawFood</h1>
+                    <span>Administration</span>
+                </div>
+            </div>
+
+            <nav class="admin-sidebar-nav">
+                <p class="admin-nav-title">ADMINISTRATION</p>
+
+                <a href="overview.html"
+                   class="admin-nav-item active"
+                   data-admin-nav
+                   data-page-title="Admin Overview">
+                    <i class="fa-solid fa-chart-pie"></i>
+                    <span>Admin Overview</span>
+                </a>
+
+                <a href="user-management.html"
+                   class="admin-nav-item"
+                   data-admin-nav
+                   data-page-title="User Management">
+                    <i class="fa-solid fa-users"></i>
+                    <span>User Management</span>
+                </a>
+
+                <a href="user-monitoring.html"
+                   class="admin-nav-item"
+                   data-admin-nav
+                   data-page-title="User Monitoring">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <span>User Monitoring</span>
+                </a>
+
+                <a href="settings.html"
+                   class="admin-nav-item"
+                   data-admin-nav
+                   data-page-title="Settings">
+                    <i class="fa-solid fa-gear"></i>
+                    <span>Settings</span>
+                </a>
+            </nav>
+
+            <div class="admin-sidebar-footer">
+                <div class="admin-user-profile">
+                    <img
+                        src="../../assets/images/default-avatar.png"
+                        alt="Admin profile"
+                        class="admin-user-avatar"
+                        data-admin-user-avatar
+                    >
+
+                    <div class="admin-user-details">
+                        <strong data-admin-user-name>Loading...</strong>
+                        <span data-admin-user-email>Loading...</span>
+                    </div>
+                </div>
+
+                <a href="/logout" class="admin-logout-link logout-btn">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+
+        <main class="admin-main">
+            <header class="admin-topbar">
+                <div>
+                    <span class="admin-topbar-label" data-admin-page-title>
+                        Admin Overview
+                    </span>
+                </div>
+
+                <button
+                    type="button"
+                    class="admin-sidebar-toggle"
+                    data-admin-sidebar-toggle
+                    aria-label="Toggle navigation"
+                    aria-expanded="false"
+                >
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </header>
+
+            <div class="admin-page-container">
+                <section class="admin-page-heading">
+                    <div>
+                        <h2>Admin Overview</h2>
+                        <p>Monitor user accounts and administrative activity.</p>
+                    </div>
+                </section>
+
+                <section class="admin-overview-stats">
+                    <article class="admin-stat-card">
+                        <div class="admin-stat-info">
+                            <span>Total Users</span>
+                            <strong id="overviewTotalUsers">--</strong>
+                            <small>Registered user accounts</small>
+                        </div>
+                        <div class="admin-stat-icon">
+                            <i class="fa-solid fa-users"></i>
+                        </div>
+                    </article>
+
+                    <article class="admin-stat-card">
+                        <div class="admin-stat-info">
+                            <span>Active Users</span>
+                            <strong id="overviewActiveUsers">--</strong>
+                            <small>Accounts with active access</small>
+                        </div>
+                        <div class="admin-stat-icon">
+                            <i class="fa-solid fa-user-check"></i>
+                        </div>
+                    </article>
+
+                    <article class="admin-stat-card">
+                        <div class="admin-stat-info">
+                            <span>Inactive Users</span>
+                            <strong id="overviewInactiveUsers">--</strong>
+                            <small>Accounts without access</small>
+                        </div>
+                        <div class="admin-stat-icon">
+                            <i class="fa-solid fa-user-lock"></i>
+                        </div>
+                    </article>
+                </section>
+
+                <section class="admin-overview-panel">
+                    <div class="admin-overview-panel-heading">
+                        <div>
+                            <h3>Administrative Responsibilities</h3>
+                            <p>Manage and monitor the PawFood platform.</p>
+                        </div>
+                    </div>
+
+                    <div class="admin-overview-links">
+                        <a href="user-management.html" class="admin-overview-link">
+                            <div class="admin-overview-link-icon">
+                                <i class="fa-solid fa-users"></i>
+                            </div>
+                            <div>
+                                <strong>User Management</strong>
+                                <span>Create, update, and manage user accounts.</span>
+                            </div>
+                            <i class="fa-solid fa-chevron-right"></i>
+                        </a>
+
+                        <a href="user-monitoring.html" class="admin-overview-link">
+                            <div class="admin-overview-link-icon">
+                                <i class="fa-solid fa-shield-halved"></i>
+                            </div>
+                            <div>
+                                <strong>User Monitoring</strong>
+                                <span>Review account activity and access records.</span>
+                            </div>
+                            <i class="fa-solid fa-chevron-right"></i>
+                        </a>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <script src="../../js/admin/layout.js"></script>
+    <script src="../../js/admin/overview.js"></script>
+</body>
+</html>

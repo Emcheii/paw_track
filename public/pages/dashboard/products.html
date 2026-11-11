@@ -1,0 +1,332 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PawFood - Products & Inventory</title>
+    <link rel="stylesheet" href="../../css/dashboard/products.css">
+    <link rel="stylesheet" href="../../css/theme.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="app-layout">
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                <div class="brand-icon-box">
+                    <i class="fa-solid fa-paw"></i>
+                </div>
+                <div class="brand-text">
+                    <h1>PawFood</h1>
+                    <span>Sales & Demand</span>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <div class="nav-section-title">MAIN</div>
+                <a href="overview.html" class="nav-item">
+                    <i class="fa-solid fa-chart-pie"></i> Overview
+                </a>
+                <a href="demand-forecast.html" class="nav-item">
+                    <i class="fa-solid fa-chart-line"></i> Demand Forecast
+                </a>
+                <a href="products.html" class="nav-item active">
+                    <i class="fa-solid fa-box-archive"></i> Products
+                </a>
+                <a href="reports.html" class="nav-item">
+                    <i class="fa-solid fa-file-lines"></i> Reports
+                </a>
+
+                <div class="nav-section-title system-title">SYSTEM</div>
+                <a href="settings.html" class="nav-item">
+                    <i class="fa-solid fa-gear"></i> Settings
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="user-account-box">
+                    <div class="user-profile-row">
+                        <img id="sidebarProfileImage" src="../../assets/images/default-avatar.png" alt="Profile"
+                            class="user-avatar-img">
+                        <div class="user-info">
+                            <strong id="sidebarUserName">Loading...</strong>
+                            <span id="sidebarUserEmail">Loading...</span>
+                        </div>
+                    </div>
+                    <a href="/logout" class="logout-link-row logout-btn">
+                        <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
+                    </a>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-header">
+                <div class="header-breadcrumb-pills">
+                    <span class="badge-pill gray">Academic Term Project</span>
+                    <span class="breadcrumb-sub">Demand Modeling v1.0</span>
+                </div>
+            </header>
+
+            <div class="dashboard-scroll-container">
+                <div class="page-title-row">
+                    <div>
+                        <div class="catalog-storage-tag">
+                            <i class="fa-solid fa-box-archive"></i> CATALOG & STORAGE HUB
+                        </div>
+                        <h2>Products & Inventory</h2>
+                        <p>Manage products, pricing, and inventory levels.</p>
+                    </div>
+                    <div class="header-action-group">
+                        <button id="addProductBtn" class="primary-green-btn">
+                            <i class="fa-solid fa-plus"></i> Add Product
+                        </button>
+                    </div>
+                </div>
+
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-header">
+                            <span class="metric-title">TOTAL SKUS</span>
+                            <div class="metric-icon-box bg-blue">
+                                <i class="fa-solid fa-box"></i>
+                            </div>
+                        </div>
+                        <div class="metric-value" id="totalProducts">0</div>
+                        <div class="metric-subtext green-text">All products</div>
+                    </div>
+
+                    <div class="metric-card">
+                        <div class="metric-header">
+                            <span class="metric-title">IN STOCK</span>
+                            <div class="metric-icon-box bg-green">
+                                <i class="fa-solid fa-check"></i>
+                            </div>
+                        </div>
+                        <div class="metric-value" id="inStockCount">0</div>
+                        <div class="metric-subtext">Products with available stock</div>
+                    </div>
+
+                    <div class="metric-card">
+                        <div class="metric-header">
+                            <span class="metric-title">LOW STOCK NOTICES</span>
+                            <div class="metric-icon-box bg-yellow">
+                                <i class="fa-solid fa-triangle-exclamation"></i>
+                            </div>
+                        </div>
+                        <div class="metric-value" id="lowStockCount">0</div>
+                        <div class="metric-subtext alert-text">Based on forecasted demand</div>
+                    </div>
+
+                    <div class="metric-card">
+                        <div class="metric-header">
+                            <span class="metric-title">OUT OF STOCK</span>
+                            <div class="metric-icon-box bg-red">
+                                <i class="fa-solid fa-ban"></i>
+                            </div>
+                        </div>
+                        <div class="metric-value" id="outOfStockCount">0</div>
+                        <div class="metric-subtext red-text">Products with zero stock</div>
+                    </div>
+                </div>
+
+                <div class="section-card">
+                    <div class="table-filter-bar">
+                        <div class="search-input-wrap">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <input type="text" id="productSearchInput"
+                                placeholder="Search product name, SKU, or category...">
+                        </div>
+
+                        <div class="filter-actions-right">
+                            <select id="categoryFilter" class="filter-dropdown-btn">
+                                <option value="">All Categories</option>
+                            </select>
+
+                            <select id="stockLevelFilter" class="filter-dropdown-btn">
+                                <option value="">All Stock Levels</option>
+                                <option value="in-stock">In Stock</option>
+                                <option value="low-stock">Low Stock</option>
+                                <option value="out-of-stock">Out of Stock</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Category</th>
+                                    <th>Price</th>
+                                    <th>Stock Quantity</th>
+                                    <th>Status</th>
+                                    <th class="text-right">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="productsTableBody"></tbody>
+                        </table>
+                    </div>
+
+                    <div class="table-pagination-row">
+                        <span id="productCountText">Showing 0 products</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="addProductModal" class="modal-overlay">
+                <div class="product-modal">
+                    <div class="modal-header">
+                        <div>
+                            <h3>Add Product</h3>
+                            <p>Enter the product information below.</p>
+                        </div>
+                        <button id="closeProductModal" class="modal-close-btn" type="button">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+
+                    <form id="addProductForm">
+                        <div class="form-group">
+                            <label for="productName">Product Name</label>
+                            <input type="text" id="productName" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="productSku">SKU</label>
+                            <input type="text" id="productSku" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="productCategory">Category</label>
+                            <input type="text" id="productCategory" placeholder="e.g. Dry Food" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="productSubcategory">Subcategory</label>
+                            <input type="text" id="productSubcategory"
+                                placeholder="e.g. FEEDS, CANS, TABLET" maxlength="100" required>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="productPrice">Price</label>
+                                <input type="number" id="productPrice" min="0" step="0.01" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="productUnit">Unit</label>
+                                <input type="text" id="productUnit"
+                                    placeholder="bags, cans, packs..." required>
+                            </div>
+                        </div>
+
+                        <div class="modal-actions">
+                            <button type="button" id="cancelProductBtn" class="secondary-btn">
+                                Cancel
+                            </button>
+                            <button type="submit" class="primary-green-btn">
+                                Add Product
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div id="addStockModal" class="modal-overlay">
+                <div class="product-modal">
+                    <div class="modal-header">
+                        <div>
+                            <h3>Add Stock</h3>
+                            <p>Add a quantity to the product's current stock.</p>
+                        </div>
+                        <button id="closeAddStockModal" class="modal-close-btn" type="button">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+
+                    <form id="addStockForm">
+                        <input type="hidden" id="addStockProductId">
+
+                        <div class="form-group">
+                            <label for="addStockProductName">Product</label>
+                            <input type="text" id="addStockProductName" readonly>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="addStockCurrentQuantity">Current Stock</label>
+                            <input type="number" id="addStockCurrentQuantity" readonly>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="addStockQuantity">Quantity to Add</label>
+                            <input type="number" id="addStockQuantity" min="1" step="1" required>
+                        </div>
+
+                        <div class="modal-actions">
+                            <button type="button" id="cancelAddStockBtn" class="secondary-btn">
+                                Cancel
+                            </button>
+                            <button type="submit" class="primary-green-btn">
+                                Add Stock
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div id="deductStockModal" class="modal-overlay">
+                <div class="product-modal">
+                    <div class="modal-header">
+                        <div>
+                            <h3>Manual Stock Deduction</h3>
+                            <p>Enter the quantity to subtract from current stock.</p>
+                        </div>
+                        <button id="closeDeductStockModal" class="modal-close-btn" type="button">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+
+                    <form id="deductStockForm">
+                        <input type="hidden" id="deductStockProductId">
+
+                        <div class="form-group">
+                            <label for="deductStockProductName">Product</label>
+                            <input type="text" id="deductStockProductName" readonly>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="deductStockCurrentQuantity">Current Stock</label>
+                            <input type="number" id="deductStockCurrentQuantity" readonly>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="deductStockQuantity">Quantity to Deduct</label>
+                            <input type="number" id="deductStockQuantity" min="1" step="1" required>
+                        </div>
+
+                        <div class="modal-actions">
+                            <button type="button" id="cancelDeductStockBtn" class="secondary-btn">
+                                Cancel
+                            </button>
+                            <button type="submit" class="primary-green-btn">
+                                Deduct Stock
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="../../js/themes/themes-switcher.js"></script>
+        <script src="../../js/dashboard/products.js"></script>
+        <script src="../../js/dashboard/auth-check.js"></script>
+        <script src="../../js/dashboard/logout.js"></script>
+        <script src="../../js/dashboard/dashboard-user.js"></script>
+    </div>
+</body>
+
+</html>
